@@ -1,0 +1,47 @@
+/* CurvesPanel.css */
+.curves-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-panel);
+  height: 100%;
+}
+
+/* Channel tabs */
+.curves-panel__channels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto auto;
+  gap: 1px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+.curves-panel__ch-btn {
+  height: var(--tool-row-height);
+  border-radius: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  background: var(--color-bg-panel);
+}
+
+.curves-panel__ch-btn.active {
+  background: var(--color-bg-button-active);
+  color: #fff;
+}
+
+/* Canvas container */
+.curves-panel__canvas-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  padding: var(--space-4);
+}
+
+.curves-panel__canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: crosshair;
+  border-radius: var(--radius-sm);
+  touch-action: none;
+}

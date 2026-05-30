@@ -1,0 +1,59 @@
+/* LevelsPanel.css */
+.levels-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-panel);
+  height: 100%;
+}
+
+.levels-panel__channels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto auto;
+  gap: 1px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+.levels-panel__ch-btn {
+  height: var(--tool-row-height);
+  border-radius: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  background: var(--color-bg-panel);
+}
+.levels-panel__ch-btn.active {
+  background: var(--color-bg-button-active);
+  color: #fff;
+}
+
+.levels-panel__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--color-border);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.levels-panel__row {
+  display: grid;
+  grid-template-columns: 110px 1fr 44px;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-5);
+  height: var(--slider-row-height);
+  background: var(--color-bg-panel);
+}
+
+.levels-panel__label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.levels-panel__value {
+  font-size: var(--font-size-sm);
+  font-family: var(--font-mono);
+  color: var(--color-text-primary);
+  text-align: right;
+}

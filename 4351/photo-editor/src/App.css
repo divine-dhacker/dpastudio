@@ -1,0 +1,385 @@
+/* =============================================================
+   App.css — PixelCraft Photo Editor
+   Global layout + component styles for both screens.
+   All values reference tokens from tokens.css.
+   ============================================================= */
+
+/* ── Root shell ──────────────────────────────────────────────── */
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--c-bg);
+}
+
+/* =============================================================
+   HOME DASHBOARD
+   ============================================================= */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--c-bg);
+  overflow: hidden;
+}
+
+/* ── Home top bar ────────────────────────────────────────────── */
+.home__topbar {
+  display: flex;
+  align-items: center;
+  height: var(--topbar-h);
+  padding: 0 var(--sp-5);
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.home__icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-sm);
+  color: var(--c-text);
+  transition: background var(--ease);
+  flex-shrink: 0;
+}
+.home__icon-btn:hover { background: rgba(255,255,255,0.08); }
+
+.home__title {
+  flex: 1;
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--c-text);
+  letter-spacing: -0.01em;
+  padding-left: var(--sp-4);
+}
+
+/* ── Home icon grid ──────────────────────────────────────────── */
+.home__grid {
+  flex: 1;
+  display: grid;
+  /* 3 equal columns, matching the reference screenshot */
+  grid-template-columns: repeat(3, 1fr);
+  /* Auto rows with explicit row heights to match spacing in screenshot */
+  grid-template-rows: repeat(3, 1fr);
+  align-content: start;
+  padding: var(--sp-9) var(--sp-6);
+  gap: 0;
+  overflow: hidden;
+}
+
+/* Last row has only 2 items — centre them */
+.home__item:nth-child(7) { grid-column: 1; }
+.home__item:nth-child(8) { grid-column: 2; }
+
+.home__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  padding: var(--sp-8) var(--sp-4);
+  color: var(--c-text);
+  border-radius: var(--r-md);
+  transition: background var(--ease), transform 80ms ease;
+  cursor: pointer;
+}
+
+.home__item:hover,
+.home__item:focus-visible {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.home__item:active {
+  transform: scale(0.93);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Gallery gets a subtle accent treatment since it's primary CTA */
+.home__item--primary .home__item-icon {
+  color: var(--c-text);     /* same white — matches screenshot */
+}
+
+.home__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+}
+
+.home__item-icon svg {
+  width: 44px;
+  height: 44px;
+}
+
+.home__item-label {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-normal);
+  color: var(--c-text);
+  text-align: center;
+  line-height: 1.3;
+  /* Wrap "Recent Photos" but not "Gallery" */
+  max-width: 80px;
+}
+
+/* =============================================================
+   EDITOR WORKSPACE
+   ============================================================= */
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--c-bg);
+}
+
+/* ── Editor top bar ──────────────────────────────────────────── */
+.editor__topbar {
+  display: flex;
+  align-items: center;
+  height: var(--topbar-h);
+  padding: 0 var(--sp-3);
+  flex-shrink: 0;
+  background: #141414;
+  border-bottom: 1px solid var(--c-border);
+  gap: var(--sp-1);
+  z-index: var(--z-bar);
+}
+
+.editor__title-block {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--sp-3);
+}
+
+.editor__filename {
+  font-size: var(--text-base);
+  font-weight: var(--fw-medium);
+  color: var(--c-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.editor__dims {
+  font-size: var(--text-xs);
+  color: var(--c-text-sub);
+  line-height: 1.3;
+  font-family: var(--font-mono);
+}
+
+.editor__bar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  flex-shrink: 0;
+}
+
+.editor__bar-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text);
+  border-radius: var(--r-sm);
+  transition: background var(--ease), color var(--ease);
+  flex-shrink: 0;
+}
+.editor__bar-btn:hover  { background: rgba(255,255,255,0.1); }
+.editor__bar-btn:active { background: rgba(255,255,255,0.18); }
+.editor__bar-btn--dim   { opacity: 0.3; cursor: not-allowed; }
+.editor__bar-btn--check { color: var(--c-check); }
+.editor__bar-btn--save  { color: var(--c-accent-lit); }
+
+/* ── Editor body ─────────────────────────────────────────────── */
+.editor__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ── Side panel (landscape / desktop) ───────────────────────── */
+.editor__side {
+  display: none;   /* hidden on mobile */
+  flex-direction: column;
+  width: var(--panel-w);
+  flex-shrink: 0;
+  background: var(--c-surface);
+  border-right: 1px solid var(--c-border);
+  overflow: hidden;
+  z-index: var(--z-panel);
+}
+
+@media (min-width: 768px) {
+  .editor__side { display: flex; }
+  .editor__bottombar { display: none !important; }
+}
+
+/* ── Bottom bar (portrait / mobile) ─────────────────────────── */
+.editor__bottombar {
+  flex-shrink: 0;
+  background: var(--c-surface);
+  border-top: 1px solid var(--c-border);
+  z-index: var(--z-bar);
+}
+
+.editor__tool-strip {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: var(--bottombar-h);
+  padding: 0 var(--sp-4);
+  gap: var(--sp-2);
+  scrollbar-width: none;
+}
+.editor__tool-strip::-webkit-scrollbar { display: none; }
+
+.editor__strip-btn {
+  flex-shrink: 0;
+  height: 34px;
+  padding: 0 var(--sp-5);
+  background: var(--c-surface-2);
+  color: var(--c-text);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  border-radius: var(--r-sm);
+  white-space: nowrap;
+  transition: background var(--ease), color var(--ease);
+}
+.editor__strip-btn:hover           { background: #333; }
+.editor__strip-btn--active {
+  background: var(--c-accent);
+  color: #fff;
+}
+
+/* =============================================================
+   TOOL GRID  (inside side panel on desktop)
+   ============================================================= */
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--c-border);
+  overflow-y: auto;
+  flex: 1;
+}
+.tool-grid::-webkit-scrollbar { width: 3px; }
+.tool-grid::-webkit-scrollbar-thumb { background: var(--c-border-hi); border-radius: 2px; }
+
+.tool-grid__btn {
+  height: 44px;
+  background: var(--c-surface);
+  color: var(--c-text);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.01em;
+  transition: background var(--ease), color var(--ease);
+}
+.tool-grid__btn:hover           { background: #2c2c2c; }
+.tool-grid__btn--active {
+  background: var(--c-accent);
+  color: #fff;
+  font-weight: var(--fw-bold);
+}
+
+/* =============================================================
+   CANVAS VIEWPORT
+   ============================================================= */
+
+.canvas-viewport {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  /* No background here — we use the child layers below */
+}
+
+/* Layer 1 — Checkerboard div (fills the viewport entirely) */
+.canvas-viewport__checker {
+  position: absolute;
+  inset: 0;
+  /* .checkerboard class from tokens.css applies the pattern */
+  opacity: 0.55;   /* slightly muted so image pops over it */
+}
+
+/* Layer 2 — The actual <canvas> element */
+.canvas-viewport__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;    /* override Fabric/Canvas inline size */
+  height: 100% !important;
+  display: block;
+  /* Transparent background so checker shows through empty areas */
+  background: transparent;
+  touch-action: none;
+}
+
+/* Layer 3 — Empty state hint (shown when no image is loaded) */
+.canvas-viewport__empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-5);
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.canvas-viewport__empty svg {
+  width: 80px;
+  height: 80px;
+  opacity: 0.5;
+}
+
+.canvas-viewport__empty p {
+  font-size: var(--text-md);
+  font-weight: var(--fw-medium);
+  text-align: center;
+}
+
+.canvas-viewport__empty-sub {
+  font-size: var(--text-sm) !important;
+  color: rgba(255, 255, 255, 0.22) !important;
+  margin-top: calc(-1 * var(--sp-3));
+}
+
+/* Layer 4 — Drag-over glow */
+.canvas-viewport__drop-glow {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 115, 232, 0.2);
+  border: 3px dashed var(--c-accent);
+  border-radius: var(--r-sm);
+  color: var(--c-accent-lit);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  pointer-events: none;
+  z-index: var(--z-overlay);
+}
+
+/* Drag active — highlight the whole viewport */
+.canvas-viewport--drag {
+  outline: 3px solid var(--c-accent);
+  outline-offset: -3px;
+}

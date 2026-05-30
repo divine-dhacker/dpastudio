@@ -1,0 +1,177 @@
+/* =============================================================
+   PixelCraft — Design Token System
+   tokens.css
+   ============================================================= */
+
+:root {
+  /* ── Brand Colors ─────────────────────────────────────────── */
+  --c-bg:          #0d0d0d;   /* near-black page background       */
+  --c-surface:     #181818;   /* card / panel surface             */
+  --c-surface-2:   #222222;   /* elevated surface (modals)        */
+  --c-border:      #2e2e2e;   /* hairline dividers                */
+  --c-border-hi:   #3a3a3a;   /* hover / focus borders            */
+
+  --c-text:        #e8e8e8;   /* primary text                     */
+  --c-text-sub:    #888888;   /* muted / secondary text           */
+  --c-text-dim:    #4a4a4a;   /* placeholder / disabled           */
+
+  --c-accent:      #1a73e8;   /* primary blue action              */
+  --c-accent-lit:  #4da3ff;   /* lighter blue for glows           */
+  --c-check:       #34a853;   /* confirm / apply green            */
+  --c-danger:      #ea4335;   /* destructive action               */
+
+  /* ── Checkerboard (transparency grid) ───────────────────── */
+  --checker-light: #c8c8c8;
+  --checker-dark:  #a0a0a0;
+  --checker-size:  16px;
+
+  /* ── Typography ─────────────────────────────────────────── */
+  --font:      'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Roboto Mono', 'Courier New', monospace;
+
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 14px;
+  --text-md:   16px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-bold:   700;
+
+  /* ── Spacing ─────────────────────────────────────────────── */
+  --sp-1:  2px;
+  --sp-2:  4px;
+  --sp-3:  6px;
+  --sp-4:  8px;
+  --sp-5:  12px;
+  --sp-6:  16px;
+  --sp-7:  20px;
+  --sp-8:  24px;
+  --sp-9:  32px;
+  --sp-10: 48px;
+
+  /* ── Layout ──────────────────────────────────────────────── */
+  --topbar-h:    52px;
+  --bottombar-h: 52px;
+  --panel-w:     300px;   /* desktop side panel                  */
+
+  /* ── Radii ───────────────────────────────────────────────── */
+  --r-sm:   4px;
+  --r-md:   8px;
+  --r-lg:   16px;
+  --r-full: 9999px;
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-sm:  0 1px 4px  rgba(0,0,0,0.5);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.6);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.75);
+
+  /* ── Motion ──────────────────────────────────────────────── */
+  --ease:       150ms ease;
+  --ease-slow:  280ms cubic-bezier(0.16,1,0.3,1);
+
+  /* ── Z-index ─────────────────────────────────────────────── */
+  --z-canvas:   1;
+  --z-overlay:  10;
+  --z-panel:    20;
+  --z-bar:      30;
+  --z-modal:    50;
+}
+
+/* ── CSS Reset + Base ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  height: 100%;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font);
+  font-size: var(--text-base);
+  font-weight: var(--fw-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Range input reset ───────────────────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  width: 100%;
+  background: var(--c-border-hi);
+  border-radius: var(--r-full);
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  cursor: grab;
+}
+input[type="range"]::-webkit-slider-thumb:active { cursor: grabbing; }
+
+/* ── Shared button atom ──────────────────────────────────────── */
+button {
+  font-family: var(--font);
+  font-size: var(--text-base);
+  font-weight: var(--fw-medium);
+  color: var(--c-text);
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Hidden file input ───────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+/* ── Checkerboard utility (applied to canvas wrappers) ───────── */
+.checkerboard {
+  background-color: var(--checker-light);
+  background-image:
+    linear-gradient(45deg, var(--checker-dark) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--checker-dark) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--checker-dark) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--checker-dark) 75%);
+  background-size:
+    var(--checker-size) var(--checker-size),
+    var(--checker-size) var(--checker-size),
+    var(--checker-size) var(--checker-size),
+    var(--checker-size) var(--checker-size);
+  background-position:
+    0 0,
+    0 calc(var(--checker-size) / 2),
+    calc(var(--checker-size) / 2) calc(-1 * var(--checker-size) / 2),
+    calc(-1 * var(--checker-size) / 2) 0;
+}
