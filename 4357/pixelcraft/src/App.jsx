@@ -191,7 +191,7 @@ function HamburgerDrawer({ onClose }) {
     { icon: <IcoSettings />, label: 'Settings',
       action: () => { setShowSettings(true); onClose(); } },
     { icon: <IcoContact  />, label: 'Contact',
-      action: () => window.open('mailto:support@dpastudio.app', '_blank') },
+      action: () => window.open('mailto:support@pixelcraft.app', '_blank') },
     { icon: <IcoStar2    />, label: 'Rate the App',
       action: () => console.log('[TODO] Rate app') },
     { icon: <IcoInfo     />, label: 'About',
@@ -207,7 +207,7 @@ function HamburgerDrawer({ onClose }) {
       >
         {/* App header */}
         <div className="drawer__header">
-          <div className="drawer__logo" aria-label="dpastudio logo">
+          <div className="drawer__logo" aria-label="PixelCraft logo">
             <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
               <rect width="40" height="40" rx="10" fill="#1a73e8"/>
               <path d="M10 28 L20 10 L30 28" stroke="white" strokeWidth="2.5"
@@ -216,8 +216,8 @@ function HamburgerDrawer({ onClose }) {
             </svg>
           </div>
           <div className="drawer__app-title">
-            <span className="drawer__app-name">dpastudio</span>
-            <span className="drawer__app-sub">photo editor</span>
+            <span className="drawer__app-name">Photo Editor</span>
+            <span className="drawer__app-sub">PixelCraft</span>
           </div>
           <button className="drawer__close" onClick={onClose} aria-label="Close menu">
             <IcoClose />
@@ -236,7 +236,7 @@ function HamburgerDrawer({ onClose }) {
 
         {/* Version footer */}
         <div className="drawer__footer">
-          <span>dpastudio v2.0</span>
+          <span>PixelCraft v2.0</span>
         </div>
       </aside>
     </div>
@@ -514,7 +514,7 @@ function SettingsPanel({ onClose }) {
 
           <div className="settings__section-label">About</div>
           <p className="settings__about-text">
-            dpastudio v1.0 — A production-grade web photo editor.<br/>
+            PixelCraft v2.0 — A production-grade web photo editor.<br/>
             Client-side only. Your images never leave your device.
           </p>
         </div>
